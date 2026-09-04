@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace ConsoleApp1
 {
@@ -16,10 +17,10 @@ namespace ConsoleApp1
         public DateOnly Date {  get; set; }
         public TimeOnly Time { get; set; }
         public string TeacherName { get; set; }
-        public string GetAll()
+
+        public override string ToString()
         {
             return $"дата: {Date.ToString("dd.MM.yyyy")} время: {Time.ToString("HH:mm")}, преподаватель: \"{TeacherName}\"";
         }
     }
-    
 }

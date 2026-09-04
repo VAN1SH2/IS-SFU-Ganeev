@@ -1,13 +1,10 @@
 ﻿using ConsoleApp1;
 
-List<LearningObjectives> list = new List<LearningObjectives>
-{
-    new LearningObjectives(new DateOnly(2026, 6, 6), new TimeOnly(10, 15), "Иванов Иван Иванович"),
-    new LearningObjectives(new DateOnly(2026, 6, 6), new TimeOnly(12, 0), "Иванов Иван Иванович"),
-    new LearningObjectives(new DateOnly(2026, 6, 6), new TimeOnly(14, 10), "Иванов Иван Иванович"),
-    new LearningObjectives(new DateOnly(2026, 6, 6), new TimeOnly(16, 55), "Иванов Иван Иванович"),
-};
-for (int i = 0; i < list.Count; i++)
-{
-    Console.WriteLine(list[i].GetAll());
-}
+Console.WriteLine("напишите в формате дд.мм.гггг чч:мм \"фио\"");
+string str = Console.ReadLine();
+DateOnly date = DateOnly.Parse(str[0..10]);
+TimeOnly time = TimeOnly.Parse(str[11..16]);
+int Index1 = str.IndexOf("\"")+1;
+string Name = str[Index1..^1];
+LearningObjectives learningObjectives = new LearningObjectives(date, time, Name);
+Console.WriteLine(learningObjectives.ToString());
