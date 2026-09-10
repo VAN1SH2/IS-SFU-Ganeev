@@ -17,6 +17,7 @@ namespace ConsoleApp1
         public DateOnly Date {  get; set; }
         public TimeOnly Time { get; set; }
         public string TeacherName { get; set; }
+        
 
         public override string ToString()
         {
