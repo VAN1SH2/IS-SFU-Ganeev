@@ -19,7 +19,7 @@ foreach (string line in lines)
     Console.WriteLine(learningObjective.ToString());
 }
 
-int f(List<int> list)
+int f (List<int> list)
 {
     int max = 0;
     for (int i = 2; i < list.Count; i++)
