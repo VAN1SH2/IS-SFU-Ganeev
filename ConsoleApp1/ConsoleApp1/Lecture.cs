@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace ConsoleApp1
 {
@@ -13,5 +11,9 @@ namespace ConsoleApp1
         }
         public string Classroom { get; set; }
         public int StudentCount { get; set; }
+        public override string ToString()
+        {
+            return $"дата: {Date.ToString("dd.MM.yyyy")} время: {Time.ToString("HH:mm")}, преподаватель: \"{TeacherName}\", аудитория: \"{Classroom}\", количество студентов: {StudentCount}";
+        }
     }
 }

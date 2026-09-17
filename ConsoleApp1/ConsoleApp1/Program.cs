@@ -1,24 +1,8 @@
 ﻿using ConsoleApp1;
 
-
-string fileText = File.ReadAllText("D:\\IS-SFU\\ConsoleApp1\\data.txt");
-List<string> lines = new List<string>();
-List<LearningObjectives> learningObjectives = new List<LearningObjectives>();
-
 Console.WriteLine("напишите в формате дд.мм.гггг чч:мм \"фио\"");
-foreach (string line in fileText.Split('\n'))
-{
-    lines.Add(line);
-}
-Console.WriteLine(fileText);
-string str = Console.ReadLine();
-foreach (string line in lines)
-{
-    LearningObjectives learningObjective = CreateObject(line);
-    learningObjectives.Add(learningObjective);
-    Console.WriteLine(learningObjective.ToString());
-}
-
+LearningObjectivesStorage storage = new LearningObjectivesStorage();
+storage.LoadFromFile("D:\\IS-SFU\\ConsoleApp1\\data.txt");
 int f (List<int> list)
 {
     int max = 0;
@@ -32,14 +16,10 @@ int f (List<int> list)
     }
     return max;   
 }
-
-
-LearningObjectives CreateObject(string str)
+foreach (LearningObjectives obj in storage.Objectives)
 {
-    DateOnly date = DateOnly.Parse(str[0..10]);
-    TimeOnly time = TimeOnly.Parse(str[11..16]);
-    int Index1 = str.IndexOf("\"") + 1;
-    string Name = str[Index1..^1];
-    LearningObjectives learningObjective = new LearningObjectives(date, time, Name);
-    return learningObjective;
+    Console.WriteLine(obj.ToString());
 }
+
+
+

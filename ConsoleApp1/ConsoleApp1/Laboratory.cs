@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace ConsoleApp1
 {
     internal class Laboratory:LearningObjectives
@@ -13,6 +10,10 @@ namespace ConsoleApp1
         }
         public string LaboratoryName { get; set; }
         public int MaxGrade { get; set; }
+        public override string ToString()
+        {
+            return $"дата: {Date.ToString("dd.MM.yyyy")} время: {Time.ToString("HH:mm")}, преподаватель: \"{TeacherName}\", название лабораторной: \"{LaboratoryName}\", максимальный балл: {MaxGrade}";
+        }
 
     }
 }
