@@ -14,6 +14,5 @@ namespace ConsoleApp1
         {
             return $"дата: {Date.ToString("dd.MM.yyyy")} время: {Time.ToString("HH:mm")}, преподаватель: \"{TeacherName}\", название лабораторной: \"{LaboratoryName}\", максимальный балл: {MaxGrade}";
         }
-
     }
 }
