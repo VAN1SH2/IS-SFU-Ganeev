@@ -1,25 +1,21 @@
 ﻿using ConsoleApp1;
 
-Console.WriteLine("напишите в формате дд.мм.гггг чч:мм \"фио\"");
 LearningObjectivesStorage storage = new LearningObjectivesStorage();
-storage.LoadFromFile("D:\\IS-SFU\\ConsoleApp1\\data.txt");
-int f (List<int> list)
+
+string filePath = Path.Combine(AppContext.BaseDirectory, "data.txt");
+
+List<string> errors = storage.LoadFromFile(filePath);
+
+foreach (LearningObjectives objective in storage.Objectives)
 {
-    int max = 0;
-    for (int i = 2; i < list.Count; i++)
-    {
-        int three = list[i - 2] + list[i - 1] + list[i];
-        if (three > max)
-        {
-            max = three;
-        }
-    }
-    return max;   
+    Console.WriteLine(objective);
 }
-foreach (LearningObjectives obj in storage.Objectives)
+
+foreach (string error in errors)
 {
-    Console.WriteLine(obj.ToString());
+    Console.WriteLine($"Ошибка: {error}");
 }
+
 
 
 

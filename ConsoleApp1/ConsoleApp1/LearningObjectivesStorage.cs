@@ -8,46 +8,47 @@ namespace ConsoleApp1
     {
         
         public List<LearningObjectives> Objectives { get; set; } = new List<LearningObjectives>();
-        private LearningObjectives CreateObject(string str)
+        private LearningObjectivesParser learningObjectivesParser = new LearningObjectivesParser();
+        public List<string> LoadFromFile(string filePath)
         {
-            List<string> Words = new List<string>();
-            foreach (string word in str.Split())
+            List<string> errors = new List<string>();
+            Objectives.Clear();
+
+            try
             {
-                Words.Add(word);
+                int lineNumber = 0;
+
+                foreach (string line in File.ReadLines(filePath))
+                {
+                    lineNumber++;
+
+                    if (learningObjectivesParser.TryParse(line, out LearningObjectives? objective, out string? error))
+                    {
+                        if (objective != null)
+                        {
+                            Objectives.Add(objective);
+                        }
+                    }
+                    else
+                    {
+                        errors.Add($"Строка {lineNumber}: {error}");
+                    }
+                }
             }
-            if (Words[0] == "Lec")
+            catch (FileNotFoundException)
             {
-                DateOnly date = DateOnly.Parse(Words[1]);
-                TimeOnly time = TimeOnly.Parse(Words[2]);
-                string Name = Words[3][1..] + " " + Words[4] + " " + Words[5][0..^1]; 
-                string classroom = Words[6][1..^1];
-                int studentCount = int.Parse(Words[7]);
-                Lecture lecture = new Lecture(date, time, Name, classroom, studentCount);
-                return lecture;
+                errors.Add($"Файл не найден: {filePath}");
             }
-            else
+            catch (UnauthorizedAccessException)
             {
-                DateOnly date = DateOnly.Parse(Words[1]);
-                TimeOnly time = TimeOnly.Parse(Words[2]);
-                string Name = Words[3][1..]+" "+ Words[4] + " "+ Words[5][0..^1];
-                string LaboratoryName = Words[6][1..^1];
-                int MaxGrade = int.Parse(Words[7]);
-                Laboratory laboratory = new Laboratory(date, time, Name, LaboratoryName, MaxGrade);
-                return laboratory;
+                errors.Add("Нет доступа к файлу");
             }
-        }
-        public void LoadFromFile(string FilePath)
-        {
-            string fileText = File.ReadAllText(FilePath);
-            List<string> lines = new List<string>();
-            foreach (string line in fileText.Split('\n'))
+            catch (IOException ex)
             {
-                lines.Add(line);
+                errors.Add($"Ошибка чтения файла: {ex.Message}");
             }
-            foreach (string line in lines)
-            {
-                Objectives.Add(CreateObject(line));
-            }
+
+            return errors;
         }
     }
 }
