@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class LearningObjectivesStorage
+    public class LearningObjectivesStorage
     {
         
         public List<LearningObjectives> Objectives { get; set; } = new List<LearningObjectives>();
         private LearningObjectivesParser learningObjectivesParser = new LearningObjectivesParser();
+        public string AddObjective(string str)
+        {
+            if (learningObjectivesParser.TryParse(str, out LearningObjectives? objective, out string? error))
+            {
+                Objectives.Add(objective);
+                return "Объект успешно создан";
+            }
+            else
+            {
+                return $"Ошибка: {error}";
+            }
+        }
         public List<string> LoadFromFile(string filePath)
         {
             List<string> errors = new List<string>();

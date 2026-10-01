@@ -1,7 +1,7 @@
 ﻿
 namespace ConsoleApp1
 {
-    internal class Laboratory:LearningObjectives
+    public class Laboratory:LearningObjectives
     {
         public Laboratory(DateOnly dateOnly, TimeOnly timeOnly, string teacherName, string laboratoryName, int studentCount) : base(dateOnly, timeOnly, teacherName)
         {

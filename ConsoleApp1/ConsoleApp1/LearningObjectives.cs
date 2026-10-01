@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace ConsoleApp1
 {
-    internal class LearningObjectives
+    public class LearningObjectives
     {
         public LearningObjectives(DateOnly dateOnly, TimeOnly timeOnly, string teacherName)
         {   

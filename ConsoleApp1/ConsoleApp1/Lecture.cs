@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    internal class Lecture:LearningObjectives
+    public class Lecture:LearningObjectives
     {
         public Lecture(DateOnly dateOnly, TimeOnly timeOnly, string teacherName, string classroom, int studentCount) : base(dateOnly, timeOnly, teacherName)
         {
