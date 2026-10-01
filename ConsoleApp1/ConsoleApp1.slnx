@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="GraphTest/GraphTest.csproj" Id="a10bfa97-322a-47fd-b93b-060ceabaf4ce" />
   <Project Path="TestProject1/TestProject1.csproj" Id="ab56b2fe-1c64-4276-8075-8f4060710e09" />
 </Solution>
