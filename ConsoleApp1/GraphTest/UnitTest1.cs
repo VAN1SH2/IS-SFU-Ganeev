@@ -23,7 +23,8 @@ namespace GraphTest
                 "D --> C\n" +
                 "F --> C\n" +
                 "A 0-> F";
-            Assert.Equal(answer, Parser.Parse(input));
+            bool result = Parser.Parse(input).Count == answer.Count && Parser.Parse(input).OrderBy(kvp => kvp.Key).SequenceEqual(answer.OrderBy(kvp => kvp.Key));
+            Assert.True(result);
         }
 
         [Theory]
